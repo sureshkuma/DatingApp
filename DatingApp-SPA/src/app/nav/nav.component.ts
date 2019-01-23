@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/Auth.service';
 import { NgForm } from '../../../node_modules/@angular/forms';
+import { AlertifyjsService } from '../_services/Alertifyjs.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 
 @Component({
@@ -10,27 +12,26 @@ import { NgForm } from '../../../node_modules/@angular/forms';
 })
 export class NavComponent implements OnInit {
 model: any = {};
-  constructor(private authservice: AuthService) { }
+  constructor(public authservice: AuthService, private alertfyservc: AlertifyjsService, private route: Router) { }
 
   ngOnInit() {
   }
 
   login(model: NgForm) {
 this.authservice.Login(model.value).subscribe(next => {
-  console.log('login in successfully');
+  this.alertfyservc.success('login in successfully');
 }, error => {
-  console.log('lofined failed');
-});
+ this.alertfyservc.error('lofined failed');
+}, () => { this.route.navigate(['/members']); });
   }
 
   loggedin() {
-    const token = localStorage.getItem('token');
-
-    return !!token;
+    return this.authservice.Loggedinn();
   }
 
   Logout() {
     localStorage.removeItem('token');
-    console.log('logout successfully');
+    this.alertfyservc.message('logout successfully');
+    this.route.navigate(['']);
   }
 }
