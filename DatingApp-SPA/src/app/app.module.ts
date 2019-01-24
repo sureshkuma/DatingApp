@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { JwtModule } from '../../node_modules/@auth0/angular-jwt';
+import {NgxGalleryModule} from 'ngx-gallery';
 
 
 import { AppComponent } from './app.component';
@@ -15,11 +18,20 @@ import { RegisterComponent } from './register/register.component';
 import { ErrorIntercepprovider } from './_services/error.interceptor';
 import { AlertifyjsService } from './_services/Alertifyjs.service';
 import { ListsComponent } from './lists/lists.component';
-import { MemberListComponent } from './member-list/member-list.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import {appRoutes} from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+import { UserService } from './_services/user.service';
+import { MembersCardComponent } from './members/members-card/members-card.component';
+import { MemberdetaailComponent } from './members/memberdetaail/memberdetaail.component';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
 
+
+export function GetToken() {
+    return localStorage.getItem('token');
+}
 
 @NgModule({
    declarations: [
@@ -30,20 +42,34 @@ import { AuthGuard } from './_guards/auth.guard';
       RegisterComponent,
       ListsComponent,
       MemberListComponent,
-      MessagesComponent
+      MessagesComponent,
+      MembersCardComponent,
+      MemberdetaailComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
       RouterModule.forRoot(appRoutes),
-      BsDropdownModule.forRoot()
+      NgxGalleryModule,
+      BsDropdownModule.forRoot(),
+      TabsModule.forRoot(),
+      JwtModule.forRoot({
+          config: {
+              tokenGetter: GetToken,
+              whitelistedDomains: ['localhost:5000'],
+              blacklistedRoutes: ['localhost:5000/api/auth']
+          }
+      })
    ],
    providers: [
       AuthService,
       ErrorIntercepprovider,
       AlertifyjsService,
-      AuthGuard
+      AuthGuard,
+      UserService,
+      MemberListResolver,
+      MemberDetailResolver
    ],
    bootstrap: [
       AppComponent
