@@ -12,9 +12,11 @@ import { Router } from '../../../node_modules/@angular/router';
 })
 export class NavComponent implements OnInit {
 model: any = {};
+photoUrl: string;
   constructor(public authservice: AuthService, private alertfyservc: AlertifyjsService, private route: Router) { }
 
   ngOnInit() {
+    this.authservice.currenetphotourl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   login(model: NgForm) {
@@ -31,6 +33,9 @@ this.authservice.Login(model.value).subscribe(next => {
 
   Logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authservice.decodetoken = null;
+    this.authservice.currentuser = null;
     this.alertfyservc.message('logout successfully');
     this.route.navigate(['']);
   }

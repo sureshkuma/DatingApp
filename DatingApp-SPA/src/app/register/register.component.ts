@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '../../../node_modules/@angular/forms';
-import { AuthService } from '../_services/Auth.service';
-import { AlertifyjsService } from '../_services/Alertifyjs.service';
 
+import { AuthService } from '../_services/Auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,22 +8,25 @@ import { AlertifyjsService } from '../_services/Alertifyjs.service';
 })
 export class RegisterComponent implements OnInit {
  model: any = {};
-  constructor(private authservice: AuthService, private alertfyservc: AlertifyjsService) { }
+
+  constructor() { }
 
   ngOnInit() {
+
   }
   // tslint:disable-next-line:no-trailing-whitespace
+  
+  // tslint:disable-next-line:no-trailing-whitespace
 
-  register(form: NgForm) {
-   this.authservice.register(form.value).subscribe(() => {
-     this.alertfyservc.success('registartion is done successfully');
-   }, error => {
-    this.alertfyservc.error(error);
-   });
-  }
+  // tslint:disable-next-line:semicolon
+  register() {
+    console.log(this.model);
+  // tslint:disable-next-line:no-trailing-whitespace
+  } 
+  // tslint:disable-next-line:no-trailing-whitespace
+
 
   Cancel() {
-    // tslint:disable-next-line:no-trailing-whitespace
     console.log('cancelled');
   }
 }

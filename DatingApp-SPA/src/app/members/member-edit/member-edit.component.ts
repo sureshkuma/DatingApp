@@ -14,6 +14,7 @@ import { AuthService } from '../../_services/Auth.service';
 export class MemberEditComponent implements OnInit {
   @ViewChild('form') form: NgForm;
 user: User;
+photoUrl: string;
  @HostListener('window:beforeunload', ['$event'])
  unloadNotification($event: any) {
   if (this.form.dirty) {
@@ -27,6 +28,7 @@ user: User;
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
+    this.authsrvc.currenetphotourl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateform() {
@@ -36,8 +38,10 @@ user: User;
     }, error => {
       this.aletfy.error(error);
     });
+  }
 
-
+  setmainphoto($event) {
+  console.log(this.user.photoUrl = $event);
   }
 
 }
