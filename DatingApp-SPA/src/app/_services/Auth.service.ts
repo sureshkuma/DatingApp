@@ -23,8 +23,8 @@ this.Photourl.next(photurl);
 }
 
 constructor(private http: HttpClient) { }
-Login(model: any) {
-  return this.http.post(this.baseurl + 'auth/login', model).pipe(
+Login(user1: User) {
+  return this.http.post(this.baseurl + 'auth/login', user1).pipe(
     map((response: any) => {
       const user = response;
       if (user) {
@@ -39,8 +39,8 @@ Login(model: any) {
 
 }
 
-register(model: any) {
-return this.http.post(this.baseurl + 'register', model);
+register(user: User) {
+return this.http.post(this.baseurl + 'auth/register', user);
 }
 
 Loggedinn() {

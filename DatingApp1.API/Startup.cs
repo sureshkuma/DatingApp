@@ -47,6 +47,7 @@ namespace DatingApp1.API
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddScoped<IAuthRepositroy,AuthRespository>();
             services.AddScoped<IDatingRepositroy,DatingRepositroy>();
+            services.AddScoped<LogUserActivity>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer( Options => {
                     Options.TokenValidationParameters = new TokenValidationParameters{
