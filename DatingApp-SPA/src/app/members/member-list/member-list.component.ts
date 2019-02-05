@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../_models/User';
 import { UserService } from '../../_services/user.service';
 import { AlertifyjsService } from '../../_services/Alertifyjs.service';
-import { Router, ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Pagination, PaginatedResult } from '../../_models/Pagination';
-import { load } from '../../../../node_modules/@angular/core/src/render3/instructions';
-import { NgForm } from '../../../../node_modules/@angular/forms';
+import { load } from '@angular/core/src/render3/instructions';
+import { NgForm } from '@angular/forms';
 
 
 @Component({

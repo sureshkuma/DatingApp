@@ -1,10 +1,10 @@
-import { Resolve, Router, ActivatedRouteSnapshot } from '../../../node_modules/@angular/router';
+import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { User } from '../_models/User';
 import { AlertifyjsService } from '../_services/Alertifyjs.service';
 import { UserService } from '../_services/user.service';
-import { Observable, of } from '../../../node_modules/rxjs';
-import { catchError } from '../../../node_modules/rxjs/operators';
-import { Injectable } from '../../../node_modules/@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MemberDetailResolver implements Resolve<User> {

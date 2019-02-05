@@ -28,14 +28,14 @@
         <div class="card-footer">
           <div class="btn-group d-flex">
           <button class="btn btn-primary w-100">Likes</button>
-          <button class="btn btn-success w-100">Messages</button>
+          <button class="btn btn-success w-100" (click)="localTabs(3)">Messages</button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-8 mt-5">
       <div class="tab-panel">
-        <tabset class="">
+        <tabset class="member-tabset" #memberTabs>
           <tab heading = "About {{user.KnownAs}}"> 
             <h4>Descripation</h4>
             <p>{{user?.introduction}}</p>
@@ -51,8 +51,7 @@
               
               </tab>
               <tab heading = "Messages"> 
-                  
-                  <p>Messages will go here</p>
+                <app-member-messages [recipaintId] = "user.id"></app-member-messages>
                 </tab>
         </tabset>
 

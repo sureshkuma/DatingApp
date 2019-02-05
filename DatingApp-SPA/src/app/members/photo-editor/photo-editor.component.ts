@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from '../../_services/Auth.service';
 import { AlertifyjsService } from '../../_services/Alertifyjs.service';
 import { UserService } from '../../_services/user.service';
-import { findIndex } from '../../../../node_modules/rxjs/operators';
+import { findIndex } from 'rxjs/operators';
 
 
 @Component({
